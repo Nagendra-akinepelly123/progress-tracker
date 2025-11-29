@@ -5,7 +5,7 @@ const TaskSchema = new mongoose.Schema({
   description: { type: String },
   date: { type: String },
   done: {
-    type: String,
+    type: Boolean,
     default: false,
   },
   tags: {

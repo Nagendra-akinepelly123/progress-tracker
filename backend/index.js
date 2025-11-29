@@ -19,10 +19,13 @@ mongoose
 //middlewares
 app.use(cors());
 app.use(express.json());
+app.use(express.static("public"));
 
 //files
 const taskRoute = require("./routes/tasks");
 app.use("/api/tasks", taskRoute);
+const summaryRoute = require("./routes/summary");
+app.use("/api/summary", summaryRoute);
 
 //Test route
 app.get("/", (req, res) => {

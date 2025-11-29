@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=\, initial-scale=1.0" />
+    <title>Summary Page</title>
+    <style>
+      body {
+        font-family: Arial;
+        padding: 20px;
+      }
+      #result {
+        margin-top: 20px;
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Daily Productivity Summary</h2>
+
+    <label>Select Date:</label>
+    <input type="date" id="dateInput" />
+    <button onclick="getSummary()">Get Summary</button>
+
+    <div id="result"></div>
+
+    <script>
+      async function getSummary() {
+        const date = document.getElementById("dateInput").value;
+
+        if (!date) {
+          alert("Please select a date");
+          return;
+        }
+
+        const response = await fetch(
+          `http://localhost:4000/api/summary?date=${date}`
+        );
+        const data = await response.json();
+
+        document.getElementById("result").innerHTML = `
+                <p><strong>Productivity Level:</strong> ${data.progress}</p>
+                <p><strong>Percentage:</strong> ${data.percentage}%</p>
+            `;
+      }
+    </script>
+  </body>
+</html>

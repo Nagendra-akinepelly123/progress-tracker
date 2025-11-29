@@ -29,7 +29,7 @@ router.get("/", async (req, res) => {
 });
 
 // Update task (mark done / edit title, etc.)
-router.put("/:id", async (req, res) => {
+router.patch("/:id", async (req, res) => {
   try {
     const updated = await Task.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
